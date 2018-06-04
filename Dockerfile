@@ -7,7 +7,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
     apt-get install -yq \
     git
 
-RUN git clone https://github.com/seejohnrun/haste-server.git /app
+RUN git clone https://github.com/Haocen/haste-server.git /app
 WORKDIR /app
 RUN npm install
 
