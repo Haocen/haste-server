@@ -1,6 +1,6 @@
-FROM node:6
+FROM node:carbon
 
-MAINTAINER Ric Lister, rlister@gmail.com
+MAINTAINER Haocen.xu@gmail.com
 
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
