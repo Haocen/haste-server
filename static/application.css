@@ -64,6 +64,7 @@ textarea {
 	bottom: 0px;
 	right: 0px;
 	z-index: +1000; /* watch out */
+	user-select: none;
 }
 
 #box1 {
@@ -164,6 +165,7 @@ textarea {
 	margin:0;
 	padding:0;
 	width:400px;
+	user-select: none;
 }
 
 #messages li {
