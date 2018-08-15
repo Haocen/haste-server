@@ -1,7 +1,5 @@
 FROM node:carbon
 
-MAINTAINER Haocen.xu@gmail.com
-
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update && \
     apt-get install -yq \

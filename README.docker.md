@@ -25,3 +25,41 @@ Writing pastes to redis:
 docker run --name redis -d redis
 docker run --name hastebin -d -p 7777:7777 --link redis:redis -e STORAGE_TYPE=redis -e STORAGE_HOST=redis rlister/hastebin
 ```
+
+## Example docker compose
+
+```
+version: '3'
+
+services:
+   db:
+     image: redis:4
+     container_name: hastebin_redis
+     volumes:
+       - /var/home/user/hastebin-redis:/data:Z
+     restart: unless-stopped
+     networks:
+       - hastebin_internal
+     command: redis-server --appendonly yes
+
+   hastebin:
+     depends_on:
+       - db
+     image: haocen/haste-server
+     container_name: hastebin_server
+     links:
+       - db:redisDb
+     networks:
+       - hastebin_internal
+     ports:
+       - "7777:7777"
+     restart: unless-stopped
+     environment:
+       STORAGE_TYPE: redis
+       STORAGE_HOST: redisDb
+       STORAGE_PORT: 6379
+       STORAGE_EXPIRE: 2592000
+networks:
+    hastebin_internal:
+      driver: bridge
+```
